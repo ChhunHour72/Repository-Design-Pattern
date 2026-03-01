@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import '../../../model/settings/app_settings.dart';
 import '../../theme/theme.dart';
 import 'widget/theme_color_button.dart';
+import 'package:provider/provider.dart';  
+import '../../states/settings_state.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
- 
-    return Container(
+    AppSettingsState settingsState = context.watch<AppSettingsState>();
+    return MaterialApp(
+      home: Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -32,15 +35,16 @@ class SettingsScreen extends StatelessWidget {
                 .map(
                   (theme) => ThemeColorButton(
                     themeColor: theme,
-                    isSelected: false,
+                    isSelected: settingsState.theme == settingsState,
                     onTap: (value) {
-                      
+                      settingsState.changeTheme(value);
                     },
                   ),
                 )
                 .toList(),
           ),
         ],
+      ),
       ),
     );
   }
