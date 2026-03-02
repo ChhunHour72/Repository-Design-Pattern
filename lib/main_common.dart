@@ -37,8 +37,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     
-    // 1- Get the globbal settings state
-    AppSettingsState settingsState = context.read<AppSettingsState>();
+    // 1- Get the global settings state
+    AppSettingsState settingsState = context.watch<AppSettingsState>();
  
     return MaterialApp(
       debugShowCheckedModeBanner: false,
